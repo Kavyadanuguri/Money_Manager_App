@@ -138,7 +138,7 @@ class MoneyManager extends Component {
               className="app-input-element"
             >
               {transactionTypeOptions.map(each => (
-                <option value={each.displayText} key={each.displayText}>
+                <option value={each.optionId} key={each.displayText}>
                   {each.displayText}
                 </option>
               ))}
