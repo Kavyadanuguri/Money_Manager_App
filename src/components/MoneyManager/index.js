@@ -25,13 +25,13 @@ class MoneyManager extends Component {
     expenses: 0,
   }
 
-  deleteItem = (id, amo) => {
-    const {transactionList, income, type, expenses} = this.state
+  deleteItem = (id, amo, typ) => {
+    const {transactionList, income, expenses} = this.state
     const filteredList = transactionList.filter(each => each.id !== id)
 
     this.setState({transactionList: filteredList})
 
-    const isTrue = type === 'INCOME' || type === 'Income'
+    const isTrue = typ === transactionTypeOptions[1].displayText
 
     if (isTrue) {
       this.setState(prevState => ({
@@ -89,7 +89,7 @@ class MoneyManager extends Component {
 
   render() {
     const {title, amount, type, transactionList, income, expenses} = this.state
-    console.log('kavya', type)
+    console.log(type)
 
     return (
       <div className="bg-container">
@@ -134,6 +134,7 @@ class MoneyManager extends Component {
             <select
               id="label3"
               onChange={this.onType}
+              value={type}
               className="app-input-element"
             >
               {transactionTypeOptions.map(each => (
