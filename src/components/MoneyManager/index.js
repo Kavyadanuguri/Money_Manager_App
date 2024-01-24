@@ -20,18 +20,18 @@ class MoneyManager extends Component {
     transactionList: [],
     title: '',
     amount: '',
-    type: 'Income',
+    type: transactionTypeOptions[0].displayText,
     income: 0,
     expenses: 0,
   }
 
-  deleteItem = (id, amo, typ) => {
-    const {transactionList, income, expenses} = this.state
+  deleteItem = (id, amo) => {
+    const {transactionList, income, type, expenses} = this.state
     const filteredList = transactionList.filter(each => each.id !== id)
 
     this.setState({transactionList: filteredList})
 
-    const isTrue = typ === transactionTypeOptions[1].displayText
+    const isTrue = type === transactionTypeOptions[0].displayText
 
     if (isTrue) {
       this.setState(prevState => ({
@@ -60,7 +60,7 @@ class MoneyManager extends Component {
       transactionList: [...prevState.transactionList, newList],
       title: '',
       amount: '',
-      type: 'Income',
+      type: transactionTypeOptions[0].displayText,
     }))
 
     const isTrue = type === 'INCOME' || type === 'Income'
@@ -89,7 +89,6 @@ class MoneyManager extends Component {
 
   render() {
     const {title, amount, type, transactionList, income, expenses} = this.state
-    console.log(type)
 
     return (
       <div className="bg-container">
